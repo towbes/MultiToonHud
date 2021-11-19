@@ -295,89 +295,89 @@ UpdateProfile(ToonIndex) {
 	global
 	Gui, Submit, NoHide
 	local tempgag := 0
-	IniRead, tempgag, toons.ini, toon%ToonIndex%, tu1, 1
+	IniRead, tempgag, toons.ini, toon%ToonIndex%, tu1, 0
 	GuiControl,, tu1, %tempgag%
-	IniRead, tempgag, toons.ini, toon%ToonIndex%, tu2, 1
+	IniRead, tempgag, toons.ini, toon%ToonIndex%, tu2, 0
 	GuiControl,, tu2, %tempgag%
-	IniRead, tempgag, toons.ini, toon%ToonIndex%, tu3, 1
+	IniRead, tempgag, toons.ini, toon%ToonIndex%, tu3, 0
 	GuiControl,, tu3, %tempgag%
-	IniRead, tempgag, toons.ini, toon%ToonIndex%, tu4, 1
+	IniRead, tempgag, toons.ini, toon%ToonIndex%, tu4, 0
 	GuiControl,, tu4, %tempgag%
-	IniRead, tempgag, toons.ini, toon%ToonIndex%, tu5, 1
+	IniRead, tempgag, toons.ini, toon%ToonIndex%, tu5, 0
 	GuiControl,, tu5, %tempgag%
-	IniRead, tempgag, toons.ini, toon%ToonIndex%, tu6, 1
+	IniRead, tempgag, toons.ini, toon%ToonIndex%, tu6, 0
 	GuiControl,, tu6, %tempgag%
-	IniRead, tempgag, toons.ini, toon%ToonIndex%, tr1, 1
+	IniRead, tempgag, toons.ini, toon%ToonIndex%, tr1, 0
 	GuiControl,, tr1, %tempgag%
-	IniRead, tempgag, toons.ini, toon%ToonIndex%, tr2, 1
+	IniRead, tempgag, toons.ini, toon%ToonIndex%, tr2, 0
 	GuiControl,, tr2, %tempgag%
-	IniRead, tempgag, toons.ini, toon%ToonIndex%, tr3, 1
+	IniRead, tempgag, toons.ini, toon%ToonIndex%, tr3, 0
 	GuiControl,, tr3, %tempgag%
-	IniRead, tempgag, toons.ini, toon%ToonIndex%, tr4, 1
+	IniRead, tempgag, toons.ini, toon%ToonIndex%, tr4, 0
 	GuiControl,, tr4, %tempgag%
-	IniRead, tempgag, toons.ini, toon%ToonIndex%, tr5, 1
+	IniRead, tempgag, toons.ini, toon%ToonIndex%, tr5, 0
 	GuiControl,, tr5, %tempgag%
-	IniRead, tempgag, toons.ini, toon%ToonIndex%, tr6, 1
+	IniRead, tempgag, toons.ini, toon%ToonIndex%, tr6, 0
 	GuiControl,, tr6, %tempgag%
-	IniRead, tempgag, toons.ini, toon%ToonIndex%, lu1, 1
+	IniRead, tempgag, toons.ini, toon%ToonIndex%, lu1, 0
 	GuiControl,, lu1, %tempgag%
-	IniRead, tempgag, toons.ini, toon%ToonIndex%, lu2, 1
+	IniRead, tempgag, toons.ini, toon%ToonIndex%, lu2, 0
 	GuiControl,, lu2, %tempgag%
-	IniRead, tempgag, toons.ini, toon%ToonIndex%, lu3, 1
+	IniRead, tempgag, toons.ini, toon%ToonIndex%, lu3, 0
 	GuiControl,, lu3, %tempgag%
-	IniRead, tempgag, toons.ini, toon%ToonIndex%, lu4, 1
+	IniRead, tempgag, toons.ini, toon%ToonIndex%, lu4, 0
 	GuiControl,, lu4, %tempgag%
-	IniRead, tempgag, toons.ini, toon%ToonIndex%, lu5, 1
+	IniRead, tempgag, toons.ini, toon%ToonIndex%, lu5, 0
 	GuiControl,, lu5, %tempgag%
-	IniRead, tempgag, toons.ini, toon%ToonIndex%, lu6, 1
+	IniRead, tempgag, toons.ini, toon%ToonIndex%, lu6, 0
 	GuiControl,, lu6, %tempgag%
-	IniRead, tempgag, toons.ini, toon%ToonIndex%, so1, 1
+	IniRead, tempgag, toons.ini, toon%ToonIndex%, so1, 0
 	GuiControl,, so1, %tempgag%
-	IniRead, tempgag, toons.ini, toon%ToonIndex%, so2, 1
+	IniRead, tempgag, toons.ini, toon%ToonIndex%, so2, 0
 	GuiControl,, so2, %tempgag%
-	IniRead, tempgag, toons.ini, toon%ToonIndex%, so3, 1
+	IniRead, tempgag, toons.ini, toon%ToonIndex%, so3, 0
 	GuiControl,, so3, %tempgag%
-	IniRead, tempgag, toons.ini, toon%ToonIndex%, so4, 1
+	IniRead, tempgag, toons.ini, toon%ToonIndex%, so4, 0
 	GuiControl,, so4, %tempgag%
-	IniRead, tempgag, toons.ini, toon%ToonIndex%, so5, 1
+	IniRead, tempgag, toons.ini, toon%ToonIndex%, so5, 0
 	GuiControl,, so5, %tempgag%
-	IniRead, tempgag, toons.ini, toon%ToonIndex%, so6, 1
+	IniRead, tempgag, toons.ini, toon%ToonIndex%, so6, 0
 	GuiControl,, so6, %tempgag%
-	IniRead, tempgag, toons.ini, toon%ToonIndex%, th1, 1
+	IniRead, tempgag, toons.ini, toon%ToonIndex%, th1, 0
 	GuiControl,, th1, %tempgag%
-	IniRead, tempgag, toons.ini, toon%ToonIndex%, th2, 1
+	IniRead, tempgag, toons.ini, toon%ToonIndex%, th2, 0
 	GuiControl,, th2, %tempgag%
-	IniRead, tempgag, toons.ini, toon%ToonIndex%, th3, 1
+	IniRead, tempgag, toons.ini, toon%ToonIndex%, th3, 0
 	GuiControl,, th3, %tempgag%
-	IniRead, tempgag, toons.ini, toon%ToonIndex%, th4, 1
+	IniRead, tempgag, toons.ini, toon%ToonIndex%, th4, 0
 	GuiControl,, th4, %tempgag%
-	IniRead, tempgag, toons.ini, toon%ToonIndex%, th5, 1
+	IniRead, tempgag, toons.ini, toon%ToonIndex%, th5, 0
 	GuiControl,, th5, %tempgag%
-	IniRead, tempgag, toons.ini, toon%ToonIndex%, th6, 1
+	IniRead, tempgag, toons.ini, toon%ToonIndex%, th6, 0
 	GuiControl,, th6, %tempgag%
-	IniRead, tempgag, toons.ini, toon%ToonIndex%, sq1, 1
+	IniRead, tempgag, toons.ini, toon%ToonIndex%, sq1, 0
 	GuiControl,, sq1, %tempgag%
-	IniRead, tempgag, toons.ini, toon%ToonIndex%, sq2, 1
+	IniRead, tempgag, toons.ini, toon%ToonIndex%, sq2, 0
 	GuiControl,, sq2, %tempgag%
-	IniRead, tempgag, toons.ini, toon%ToonIndex%, sq3, 1
+	IniRead, tempgag, toons.ini, toon%ToonIndex%, sq3, 0
 	GuiControl,, sq3, %tempgag%
-	IniRead, tempgag, toons.ini, toon%ToonIndex%, sq4, 1
+	IniRead, tempgag, toons.ini, toon%ToonIndex%, sq4, 0
 	GuiControl,, sq4, %tempgag%
-	IniRead, tempgag, toons.ini, toon%ToonIndex%, sq5, 1
+	IniRead, tempgag, toons.ini, toon%ToonIndex%, sq5, 0
 	GuiControl,, sq5, %tempgag%
-	IniRead, tempgag, toons.ini, toon%ToonIndex%, sq6, 1
+	IniRead, tempgag, toons.ini, toon%ToonIndex%, sq6, 0
 	GuiControl,, sq6, %tempgag%
-	IniRead, tempgag, toons.ini, toon%ToonIndex%, dr1, 1
+	IniRead, tempgag, toons.ini, toon%ToonIndex%, dr1, 0
 	GuiControl,, dr1, %tempgag%
-	IniRead, tempgag, toons.ini, toon%ToonIndex%, dr2, 1
+	IniRead, tempgag, toons.ini, toon%ToonIndex%, dr2, 0
 	GuiControl,, dr2, %tempgag%
-	IniRead, tempgag, toons.ini, toon%ToonIndex%, dr3, 1
+	IniRead, tempgag, toons.ini, toon%ToonIndex%, dr3, 0
 	GuiControl,, dr3, %tempgag%
-	IniRead, tempgag, toons.ini, toon%ToonIndex%, dr4, 1
+	IniRead, tempgag, toons.ini, toon%ToonIndex%, dr4, 0
 	GuiControl,, dr4, %tempgag%
-	IniRead, tempgag, toons.ini, toon%ToonIndex%, dr5, 1
+	IniRead, tempgag, toons.ini, toon%ToonIndex%, dr5, 0
 	GuiControl,, dr5, %tempgag%
-	IniRead, tempgag, toons.ini, toon%ToonIndex%, dr6, 1
+	IniRead, tempgag, toons.ini, toon%ToonIndex%, dr6, 0
 	GuiControl,, dr6, %tempgag%
 	;MsgBox % "You pressed: " tempgag
 }
@@ -475,7 +475,7 @@ BuyGags(ToonIndex) {
 ClickGag(gagid, numgags, ToonIndex) {
 	global
 	;MsgBox % "Buying Quantity: " numgags " Position: " gagdict[gagid]
-	SetMouseDelay, 40
+	SetMouseDelay, 60
 	local this_id := toonid[ToonIndex]
 	local pos_string := gagdict[gagid]
 	;MsgBox % pos_string
@@ -566,6 +566,9 @@ GoPlayground(ToonIndex) {
 	ControlClick, x600 y590, ahk_id %this_id%,,,1
 	;wait 1s
 	Sleep 1500
+	;click the map button 615 131
+	ControlClick, x615 y131, ahk_id %this_id%,,,1
+	Sleep 500
 	;360, 490 home button
 	ControlClick, x500 y490, ahk_id %this_id%,,,1
 	;MsgBox % "Bean index: " . BeanIndex . " Toonid: " . toonid[BeanIndex]

@@ -4,7 +4,6 @@
 #Warn  						; Enable warnings to assist with detecting common errors.
 
 global toonlist := []
-WinGet, toonlist, List, Toontown Rewritten
 global toonid := []
 CoordMode, Mouse, Window
 
@@ -127,6 +126,7 @@ HeightOfControls := GetButtonDefaultHeight()
 Loop {
 	;Create sub-menus
 	Menu, FileMenu, Add, Move Windows, MoveWindows
+	Menu, FileMenu, Add, Accounts, ShowAccounts
 	Menu, ProfileMenu, Add, View Profiles, OpenProfiles
 
 	Menu, MyMenuBar, Add, File, :FileMenu
@@ -288,7 +288,31 @@ GoPlayground(tempindex)
 return
 
 MoveWindows:
+WinGet, toonlist, List, Toontown Rewritten
 SetWindows()
+return
+
+ShowAccounts:
+IniRead, KeyNames, accountinfo.ini, accounts
+Loop, Parse, KeyNames, `n, `r
+{
+	tmpKeyArr := StrSplit(A_LoopField, "=")
+	;MsgBox, % tmpKeyArr[1]
+	IniRead, ValueNames, accountinfo.ini, accounts, % tmpKeyArr[1]
+	;MsgBox, % ValueNames
+	Run, Launcher.exe, C:\Program Files (x86)\Toontown Rewritten\
+	WinWaitActive, Toontown Rewritten Launcher
+	
+	Click 630, 336
+	SendInput, % tmpKeyArr[1] ; Put your credentials here
+	Click 671, 381
+	SendInput, % tmpKeyArr[2]
+	Sleep 1500
+	Click 785, 381 ; Click the big red button
+	Sleep 3000
+}
+
+
 return
 
 UpdateProfile(ToonIndex) {
@@ -475,7 +499,7 @@ BuyGags(ToonIndex) {
 ClickGag(gagid, numgags, ToonIndex) {
 	global
 	;MsgBox % "Buying Quantity: " numgags " Position: " gagdict[gagid]
-	SetMouseDelay, 60
+	SetMouseDelay, 100
 	local this_id := toonid[ToonIndex]
 	local pos_string := gagdict[gagid]
 	;MsgBox % pos_string
@@ -538,6 +562,7 @@ ClickBeans(ToonIndex) {
 	this_id := toonid[ToonIndex]
 	ControlClick, x320 y360, ahk_id %this_id%,,,200
 	;MsgBox % "Bean index: " . BeanIndex . " Toonid: " . toonid[BeanIndex]
+	ControlClick, x382 y448, ahk_id %this_id%,,,1
 }
 
 ;GoHome on a certain index

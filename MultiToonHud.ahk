@@ -562,6 +562,8 @@ ClickBeans(ToonIndex) {
 	this_id := toonid[ToonIndex]
 	ControlClick, x320 y360, ahk_id %this_id%,,,200
 	;MsgBox % "Bean index: " . BeanIndex . " Toonid: " . toonid[BeanIndex]
+	;Click ok
+	Sleep 50
 	ControlClick, x382 y448, ahk_id %this_id%,,,1
 }
 

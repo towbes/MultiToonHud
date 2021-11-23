@@ -118,12 +118,19 @@ gagdict := {"tu1" : "x210 y168","tu2" : "x255 y168","tu3" : "x305 y168","tu4" : 
 ;dropdict := {"dr1" : "210,356","dr2" : "255,356","dr3" : "305,356","dr4" : "355,356","dr5" : "400,356","dr6" : "445,356","dr7" : "495,356"}
 
 
-NumOfButtons = 0
-DistanceBetweenControls = 5
-HeightOfControls := GetButtonDefaultHeight()
 
-;Gui Loop
-Loop {
+
+; -- Initialize the GUI
+InitGUI()
+
+return
+
+InitGUI() {
+	global
+	NumOfButtons = 0
+	DistanceBetweenControls = 5
+	HeightOfControls := GetButtonDefaultHeight()
+	;Gui Loop
 	;Create sub-menus
 	Menu, FileMenu, Add, Move Windows, MoveWindows
 	Menu, FileMenu, Add, Accounts, ShowAccounts
@@ -134,7 +141,7 @@ Loop {
 	Gui, Menu, MyMenuBar
 
 	;DrawGui
-	Gui, Add, Tab3,, Gags|Beans|Travel
+	Gui, Add, Tab3,, Main|Boss|Travel
 	Gui, Add, Text, section, Buy Gags
 	Gui, Add, Button, w25 vgag1 gGetGags, 1
 	Gui, Add, Button, x+5 w25 vgag2 gGetGags, 2
@@ -144,8 +151,7 @@ Loop {
 	Gui, Add, Button, x+5 w25 vgag4 gGetGags, 4
 	Gui, Add, Button, x+5 w25 vgag7 gGetGags, 7
 	Gui, Add, Button, x+5 w25 vgag8 gGetGags, 8
-	Gui, Tab, 2
-	Gui, Add, Text, section, Get Beans
+	Gui, Add, Text, xs section, Get Beans
 	Gui, Add, Button, w25 vbean1 gGetBeans, 1
 	Gui, Add, Button, x+5 w25 vbean2 gGetBeans, 2
 	Gui, Add, Button, x+5 w25 vbean5 gGetBeans, 5
@@ -154,8 +160,7 @@ Loop {
 	Gui, Add, Button, x+5 w25 vbean4 gGetBeans, 4
 	Gui, Add, Button, x+5 w25 vbean7 gGetBeans, 7
 	Gui, Add, Button, x+5 w25 vbean8 gGetBeans, 8
-	Gui, Tab, 3
-	Gui, Add, Text, section, Go Home
+	Gui, Add, Text, xs section, Go Home
 	Gui, Add, Button, w25 vhome1 gSendHome, 1
 	Gui, Add, Button, x+5 w25 vhome2 gSendHome, 2
 	Gui, Add, Button, x+5 w25 vhome5 gSendHome, 5
@@ -173,16 +178,19 @@ Loop {
 	Gui, Add, Button, x+5 w25 vpg4 gSendPlayground, 4
 	Gui, Add, Button, x+5 w25 vpg7 gSendPlayground, 7
 	Gui, Add, Button, x+5 w25 vpg8 gSendPlayground, 8
+	Gui, Tab, 2
+	Gui, Add, Text, section, Boss PH
+	Gui, Tab, 3
+	Gui, Add, Text, section, Boss PH
 	;Gui, Add, Edit, vHomeIndex
 	;Gui, Add, Button, gSendHome w100, Go Home
 	; Alternatively, Link controls can be used:
 	Gui, Font, norm
-	;Gui, -caption +resize
-	Gui, Show, W200 H200
+	Gui, +resize
+	Gui, Show, W200 H400
 	return
-
-
 }
+
 
 OpenProfiles:
 Gui, New
@@ -249,6 +257,7 @@ Gui, Add, Edit, x+20 w20 Limit2 Number vdr6, 0
 Gui, Show,, Gag Profiles
 return  ; End of auto-execute section. The script is idle until the user does something.
 
+
 GetProfile:
 Gui, Submit, NoHide
 tempindex := RegExReplace(ProfileIndex, "\D")
@@ -297,23 +306,30 @@ IniRead, KeyNames, accountinfo.ini, accounts
 Loop, Parse, KeyNames, `n, `r
 {
 	tmpKeyArr := StrSplit(A_LoopField, "=")
-	;MsgBox, % tmpKeyArr[1]
+	;MsgBox, % A_Index
 	IniRead, ValueNames, accountinfo.ini, accounts, % tmpKeyArr[1]
 	;MsgBox, % ValueNames
 	Run, Launcher.exe, C:\Program Files (x86)\Toontown Rewritten\
 	WinWaitActive, Toontown Rewritten Launcher
 	
 	Click 630, 336
+	Sleep 100
 	SendInput, % tmpKeyArr[1] ; Put your credentials here
+	Sleep 100
 	Click 671, 381
+	Sleep 100
 	SendInput, % tmpKeyArr[2]
-	Sleep 1500
+	Sleep 100
 	Click 785, 381 ; Click the big red button
-	Sleep 3000
+	;Wait for the TTR window to be active
+	WinWaitActive Toontown Rewritten
+	WinGet, tempwinid
+	toonlist[A_Index] := tempwinid
+	;MsgBox, % A_Index " " toonlist[A_Index]
+	Sleep 5000
 }
-
-
 return
+
 
 UpdateProfile(ToonIndex) {
 	global
@@ -499,12 +515,13 @@ BuyGags(ToonIndex) {
 ClickGag(gagid, numgags, ToonIndex) {
 	global
 	;MsgBox % "Buying Quantity: " numgags " Position: " gagdict[gagid]
-	SetMouseDelay, 100
+	SetMouseDelay, 50
 	local this_id := toonid[ToonIndex]
 	local pos_string := gagdict[gagid]
 	;MsgBox % pos_string
 	;600, 590 book location
 	ControlClick, %pos_string%, ahk_id %this_id%,,,numgags
+	Sleep 100
 }
 
 ;Save gags to ini

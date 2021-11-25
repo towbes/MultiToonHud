@@ -315,16 +315,16 @@ Loop, Parse, KeyNames, `n, `r
 	Click 630, 336
 	Sleep 100
 	SendInput, % tmpKeyArr[1] ; Put your credentials here
-	Sleep 100
+	Sleep 300
 	Click 671, 381
 	Sleep 100
 	SendInput, % tmpKeyArr[2]
-	Sleep 100
+	Sleep 300
 	Click 785, 381 ; Click the big red button
 	;Wait for the TTR window to be active
-	WinWaitActive Toontown Rewritten
-	WinGet, tempwinid
-	toonlist[A_Index] := tempwinid
+	;WinWaitActive Toontown Rewritten
+	;WinGet, tempwinid
+	;toonlist[A_Index] := tempwinid
 	;MsgBox, % A_Index " " toonlist[A_Index]
 	Sleep 5000
 }

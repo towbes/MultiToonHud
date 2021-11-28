@@ -12,14 +12,11 @@ Control::Send, {Control}
 return
 
 4::
-    while GetKeyState("5","P")
-    {
-        Loop, %toonlist% {
-            this_id := toonlist%A_Index%
-            ControlSend,, {Ctrl Down}, ahk_id %this_id%
-            Sleep, 2
-            ControlSend,, {Ctrl Up}, ahk_id %this_id%
-        }
+    Loop, %toonlist% {
+        this_id := toonlist%A_Index%
+        ControlSend,, {Ctrl Down}, ahk_id %this_id%
+        Sleep, 2
+        ControlSend,, {Ctrl Up}, ahk_id %this_id%
     }
 return
 
@@ -45,3 +42,27 @@ return
 
 7::Reload
 return
+
+;;speedway go forward
+;8::
+;thiswin := WinExist("A")
+;Loop {
+;    ControlSend,, {W Down}, ahk_id %thiswin%
+;}
+;
+;;Loop, 4 {
+;;    this_id := toonlist%A_Index%
+;;    ControlSend,, {W Down}, ahk_id %this_id%
+;;}
+;return
+;
+;
+;;speedway go forward
+;9::
+;thiswin := WinExist("A")
+;ControlSend,, {W Up}, ahk_id %thiswin%
+;;Loop, 4 {
+;;    this_id := toonlist%A_Index%
+;;    ControlSend,, {W Up}, ahk_id %this_id%
+;;}
+;return

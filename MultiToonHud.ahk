@@ -312,15 +312,15 @@ Loop, Parse, KeyNames, `n, `r
 	Run, Launcher.exe, C:\Program Files (x86)\Toontown Rewritten\
 	WinWaitActive, Toontown Rewritten Launcher
 	
-	Click 630, 336
+	Click 630 336 2
 	Sleep 100
 	SendInput, % tmpKeyArr[1] ; Put your credentials here
 	Sleep 300
-	Click 671, 381
+	Click 671 381 2
 	Sleep 100
 	SendInput, % tmpKeyArr[2]
 	Sleep 300
-	Click 785, 381 ; Click the big red button
+	Click 785 381 2 ; Click the big red button
 	;Wait for the TTR window to be active
 	;WinWaitActive Toontown Rewritten
 	;WinGet, tempwinid
@@ -577,7 +577,7 @@ SaveGags(ToonIndex) {
 ClickBeans(ToonIndex) {
 	SetMouseDelay, 10
 	this_id := toonid[ToonIndex]
-	ControlClick, x320 y360, ahk_id %this_id%,,,200
+	ControlClick, x320 y360, ahk_id %this_id%,,,250
 	;MsgBox % "Bean index: " . BeanIndex . " Toonid: " . toonid[BeanIndex]
 	;Click ok
 	Sleep 50

@@ -669,6 +669,7 @@ MoveWindow(UserIndex)
 {
 	WinGet, this_id, ID, A
 	toonid[UserIndex] := this_id
+	IniWrite, %this_id%, toons.ini, main, %UserIndex%
 	if (UserIndex <= 2)
 	{
 		offset := UserIndex - 1
@@ -714,3 +715,4 @@ F6::MoveWindow(6)
 F7::MoveWindow(7)
 F8::MoveWindow(8)
 
+8::Reload

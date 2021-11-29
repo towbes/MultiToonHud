@@ -634,7 +634,6 @@ SetWindows(){
 			MsgBox, CANCEL was pressed.
 			break
 		}
-
 		else
 			toonid[UserIndex] := this_id
 			IniWrite, %this_id%, toons.ini, main, %UserIndex%
@@ -665,6 +664,37 @@ SetWindows(){
 	}
 }
 
+
+MoveWindow(UserIndex)
+{
+	WinGet, this_id, ID, A
+	toonid[UserIndex] := this_id
+	if (UserIndex <= 2)
+	{
+		offset := UserIndex - 1
+		xpos := offset * (screenwidth/4)
+		WinMove, ahk_id %this_id%,, xpos, 0, (screenwidth/4), (screenwidth/4)  
+	}
+	else if (UserIndex > 2 and UserIndex <= 4)
+	{
+		offset := UserIndex - 3
+		xpos := offset * (screenwidth/4)
+		WinMove, ahk_id %this_id%,, xpos, (screenwidth/4), (screenwidth/4), (screenwidth/4)  
+	}
+	else if (UserIndex >4 and UserIndex <= 6)
+	{
+		offset := UserIndex - 3
+		xpos := offset * (screenwidth/4)
+		WinMove, ahk_id %this_id%,, xpos, 0, (screenwidth/4), (screenwidth/4)  
+	}
+	else if (UserIndex > 6 and UserIndex <= 8)
+	{
+		offset := UserIndex - 5
+		xpos := offset * (screenwidth/4)
+		WinMove, ahk_id %this_id%,, xpos, (screenwidth/4), (screenwidth/4), (screenwidth/4)  
+	}
+}
+
 ;https://www.autohotkey.com/board/topic/85949-creating-rows-in-a-gui-solved/
 GetButtonDefaultHeight() {
 	Static Btn
@@ -673,3 +703,14 @@ GetButtonDefaultHeight() {
 	Gui, Destroy
 	Return BtnH
 }
+
+;Quick switch active window to given index F1 -> F8
+F1::MoveWindow(1)
+F2::MoveWindow(2)
+F3::MoveWindow(3)
+F4::MoveWindow(4)
+F5::MoveWindow(5)
+F6::MoveWindow(6)
+F7::MoveWindow(7)
+F8::MoveWindow(8)
+

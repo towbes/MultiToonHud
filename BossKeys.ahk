@@ -43,6 +43,10 @@ return
 7::Reload
 return
 
+f12::
+Suspend
+return
+
 ;;speedway go forward
 ;8::
 ;thiswin := WinExist("A")

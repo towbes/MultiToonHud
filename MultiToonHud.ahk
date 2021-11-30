@@ -715,4 +715,5 @@ F6::MoveWindow(6)
 F7::MoveWindow(7)
 F8::MoveWindow(8)
 
-8::Reload
+;reload for debug purposes
+;8::Reload

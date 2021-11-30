@@ -32,12 +32,16 @@ return
 return
 
 6::
-Loop, %toonlist% {
-    this_id := toonlist%A_Index%
-    ControlSend,, {Delete Down}, ahk_id %this_id%
-    KeyWait, %A_ThisHotkey%
-    ControlSend,, {Delete Up}, ahk_id %this_id%
-}
+this_id := toonlist%A_Index%
+ControlSend,, {Delete Down}, ahk_id %this_id%
+KeyWait, %A_ThisHotkey%
+ControlSend,, {Delete Up}, ahk_id %this_id%
+;Loop, %toonlist% {
+;    this_id := toonlist%A_Index%
+;    ControlSend,, {Delete Down}, ahk_id %this_id%
+;    KeyWait, %A_ThisHotkey%
+;    ControlSend,, {Delete Up}, ahk_id %this_id%
+;}
 return
 
 7::Reload

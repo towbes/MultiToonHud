@@ -326,7 +326,7 @@ Loop, Parse, KeyNames, `n, `r
 	;WinGet, tempwinid
 	;toonlist[A_Index] := tempwinid
 	;MsgBox, % A_Index " " toonlist[A_Index]
-	Sleep 5000
+	Sleep 10000
 }
 return
 

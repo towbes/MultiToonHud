@@ -23,6 +23,7 @@ if FileExist("toons.ini") {
 	}
 }
 
+
 ;Todo
 ;Make window mover a screen with options for resolution / borderless / position 
 ;Adjust click positions so they are indepdendant of resolution https://www.autohotkey.com/boards/viewtopic.php?t=67335
@@ -132,9 +133,14 @@ InitGUI() {
 	HeightOfControls := GetButtonDefaultHeight()
 	;Gui Loop
 	;Create sub-menus
-	Menu, FileMenu, Add, Move Windows, MoveWindows
+	Menu, FileMenu, Add, Move Windows, RunMoveWindows
+	Menu, FileMenu, Add, Max Windows, MaxWindows
 	Menu, FileMenu, Add, Accounts, ShowAccounts
 	Menu, ProfileMenu, Add, View Profiles, OpenProfiles
+	Gui, Add, Checkbox, vChkTTR, Toontown Rewritten
+	Gui, Add, Checkbox, vChkCC, Corporate Clash
+	Gui, Add, Checkbox, vChk4, 4toon
+	Gui, Add, Checkbox, vChk8, 8toon
 
 	Menu, MyMenuBar, Add, File, :FileMenu
 	Menu, MyMenuBar, Add, Profile, :ProfileMenu
@@ -296,9 +302,30 @@ tempindex := RegExReplace(A_GuiControl, "\D")
 GoPlayground(tempindex)
 return
 
+RunMoveWindows:
+Gui, Submit, NoHide  ; Get checkbox values into variables
+Goto, MoveWindows
+
 MoveWindows:
+if (ChkTTR) {
+    WinGet, toonlist, List, Toontown Rewritten
+	; Optionally select between SetWindows4 or SetWindows8
+	if (Chk4) {
+		SetWindows4()
+	} else {
+		SetWindows8()
+	}
+}
+else if (ChkCC) {
+    WinGet, toonlist, List, Corporate Clash
+	SetWindows4()
+}
+return
+
+MaxWindows:
 WinGet, toonlist, List, Toontown Rewritten
-SetWindows()
+;WinGet, toonlist, List, Corporate Clash
+MaxWindows()
 return
 
 ShowAccounts:
@@ -315,6 +342,7 @@ Loop, Parse, KeyNames, `n, `r
 	Click 630 336 2
 	Sleep 100
 	SendInput, % tmpKeyArr[1] ; Put your credentials here
+	SendInput, {Del}
 	Sleep 300
 	Click 671 381 2
 	Sleep 100
@@ -619,7 +647,41 @@ GoPlayground(ToonIndex) {
 }
 
 ;Set the window positions and indexes
-SetWindows(){
+SetWindows4(){
+	Loop, %toonlist%
+	{
+		this_id := toonlist%A_Index%
+		WinActivate, ahk_id %this_id%
+		;display the input box in middle of active window
+		WinGetPos, curx, cury, curw, curh, ahk_id %this_id%
+		;Enter the index for character in following grid:
+		;[1,2,5,6]
+		;[3,4,7,8]
+		InputBox, UserIndex, Char Index, Enter Char Index, , 100,100,curx+(curw / 2), cury + (curh / 2)
+		if ErrorLevel {
+			MsgBox, CANCEL was pressed.
+			break
+		}
+		else
+			toonid[UserIndex] := this_id
+			IniWrite, %this_id%, toons.ini, main, %UserIndex%
+			if (UserIndex <= 2)
+			{
+				offset := UserIndex - 1
+				xpos := offset * (screenwidth/2)
+				WinMove, ahk_id %this_id%,, xpos, 0, (screenwidth/2), (screenwidth/3.75)  
+			}
+			else if (UserIndex > 2 and UserIndex <= 4)
+			{
+				offset := UserIndex - 3
+				xpos := offset * (screenwidth/2)
+				WinMove, ahk_id %this_id%,, xpos, (screenwidth/3.75), (screenwidth/2), (screenwidth/3.75)  
+			}
+	}
+}
+
+;Set the window positions and indexes
+SetWindows8(){
 	Loop, %toonlist%
 	{
 		this_id := toonlist%A_Index%
@@ -664,8 +726,67 @@ SetWindows(){
 	}
 }
 
+;Set the window positions and indexes
+MaxWindows(){
+	Loop, %toonlist%
+	{
+		this_id := toonlist%A_Index%
+		WinActivate, ahk_id %this_id%
+		;display the input box in middle of active window
+		;WinGetPos, curx, cury, curw, curh, ahk_id %this_id%
+		xpos := 200
+		ypos := 100
+		WinMove, ahk_id %this_id%,, xpos, ypos, (screenwidth)/1.2, (screenheight)/1.2
+		;Enter the index for character in following grid:
+		;[1,2,5,6]
+		;[3,4,7,8]
+		;InputBox, UserIndex, Char Index, Enter Char Index, , 100,100,curx+(curw / 2), cury + (curh / 2)
+		;if ErrorLevel {
+		;	MsgBox, CANCEL was pressed.
+		;	break
+		;}
+		;else
+		;	toonid[UserIndex] := this_id
+		;
+		;	IniWrite, %this_id%, toons.ini, main, %UserIndex%
+		;	if (UserIndex <= 2)
+		;	{
+		;		offset := UserIndex - 1
+		;		xpos := 200
+		;		ypos := 100
+		;		WinMove, ahk_id %this_id%,, xpos, ypos, (screenwidth)/1.2, (screenheight)/1.2
+		;	}
+		;	else if (UserIndex > 2 and UserIndex <= 4)
+		;	{
+		;		offset := UserIndex - 3
+		;		xpos := 200
+		;		ypos := 100
+		;		WinMove, ahk_id %this_id%,, xpos, ypos, (screenwidth)/1.2, (screenheight)/1.2
+		;	}
+	}
+}
+
 
 MoveWindow(UserIndex)
+{
+	WinGet, this_id, ID, A
+	toonid[UserIndex] := this_id
+	IniWrite, %this_id%, toons.ini, main, %UserIndex%
+	if (UserIndex <= 2)
+	{
+		offset := UserIndex - 1
+		xpos := offset * (screenwidth/2)
+		WinMove, ahk_id %this_id%,, xpos, 0, (screenwidth/2), (screenwidth/3.75)  
+	}
+	else if (UserIndex > 2 and UserIndex <= 4)
+	{
+		offset := UserIndex - 3
+		xpos := offset * (screenwidth/2)
+		WinMove, ahk_id %this_id%,, xpos, (screenwidth/3.75), (screenwidth/2), (screenwidth/3.75)  
+	}
+}
+
+MoveWindow8(UserIndex)
 {
 	WinGet, this_id, ID, A
 	toonid[UserIndex] := this_id
